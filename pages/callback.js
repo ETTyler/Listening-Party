@@ -27,17 +27,31 @@ export default function Callback() {
     let token = window.localStorage.getItem("token")
     let sessionID = window.localStorage.getItem("sessionID")
 
+    if (!token && hash) {
+      token = hash.substring(1).split("&").find(elem => elem.startsWith("access_token")).split("=")[1]
+      window.location.hash = ""
+      window.localStorage.setItem("token", token)
+    }
+    setToken(token)
+
     if(!sessionID) {
       sessionID = (Math.random() + 1).toString(36).substring(2);
       window.localStorage.setItem("sessionID", sessionID)
+      const startSession = async () => {
+        try {
+          const res = await fetch("/api/createSession", {
+            method: "POST",
+            body: JSON.stringify({
+              id: sessionID,
+              authCode: token,
+            }),
+          }) 
+        } catch (err) {
+          console.log(err);
+        }
+      }
+      startSession()
     }
-
-    if (!token && hash) {
-        token = hash.substring(1).split("&").find(elem => elem.startsWith("access_token")).split("=")[1]
-        window.location.hash = ""
-        window.localStorage.setItem("token", token)
-    }
-    setToken(token)
     setSessionID(sessionID)
 
     const callAPI = async () => {

@@ -17,25 +17,28 @@ export default function Music() {
 
   const search = async (e) => {
     setSearchValue(e)
-    if (searchValue.length === 0) {
-      return
+    if (searchValue.length > 1) {
+      try {
+        const res = await axios.get("https://api.spotify.com/v1/search", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          params: {
+            q: searchValue,
+            type: "track,artist"
+          }
+        })
+        const results = await res.data
+        setTracks(results.tracks.items)
+        setHideTracks(false)
+      } catch (err) {
+        console.error
+      }
     }
-	  try {
-		  const res = await axios.get("https://api.spotify.com/v1/search", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        params: {
-          q: searchValue,
-          type: "track,artist"
-        }
-    })
-		const results = await res.data
-    setTracks(results.tracks.items)
-	  } catch (err) {
-		  console.log(err);
-	  }
-  };
+    else {
+      setTracks([])
+    }
+  }
 
   return (
     <div>
@@ -43,7 +46,7 @@ export default function Music() {
         Search
       </Text>
       <Input placeholder='Enter Track' color='white' size='lg' onChange={e => search(e.target.value)}/>
-      <RenderTracks tracks={tracks}/>
+      {searchValue && <RenderTracks tracks={tracks}/>}
     </div>
 
   )

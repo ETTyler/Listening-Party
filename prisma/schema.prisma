@@ -11,7 +11,7 @@ datasource db {
 }
 
 model Session {
-  id            String       @default(cuid()) @id
+  id            String       @unique
   authCode         String?
   @@map(name: "sessions")
 }
