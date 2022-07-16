@@ -25,9 +25,9 @@ export default function Home(props) {
   
   return (
     <Container mt='15vh'>
-      <Stack spacing={8} align='center' justify='center'>
+      <Stack spacing={5} align='center' justify='center'>
         <Box align='center' justify='center' w="100vw">
-        <Heading as='h3' size='4xl' mb='1vw'>LISTENING PARTY</Heading>
+        <Heading as='h3' size='3xl' mb='1vw'>LISTENING PARTY</Heading>
         <Text fontSize='xl'color='white'>Create a session and listen to music together with your friends</Text>
         </Box>
         <Join />

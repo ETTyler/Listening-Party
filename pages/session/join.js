@@ -85,7 +85,7 @@ const Join = () => {
         </Alert>
       )
     }
-    return null
+    return null 
   }
 
   return (   
