@@ -21,7 +21,7 @@ export async function getStaticProps() {
 export default function Home(props) {
   const auth_endpoint = 'https://accounts.spotify.com/authorize'
   const response_type = 'token'
-  const REDIRECT_URI = "https://listening-party-1eo5b7i7s-ettyler.vercel.app/callback&scope=user-read-currently-playing+user-modify-playback-state"
+  const REDIRECT_URI = "https://listening-party-ten.vercel.app/callback&scope=user-read-currently-playing+user-modify-playback-state"
   
   return (
     <Container mt='15vh'>
