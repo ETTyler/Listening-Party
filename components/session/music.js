@@ -8,7 +8,7 @@ import { Center } from '@chakra-ui/react'
 import { Button, ButtonGroup } from '@chakra-ui/react'
 import { Input } from '@chakra-ui/react'
 import RenderTracks from './renderTracks'
-import { TokenContext } from '../callback';
+import { TokenContext } from '../../pages/callback';
 
 export default function Music() {
   const token = useContext(TokenContext)

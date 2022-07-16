@@ -1,6 +1,6 @@
 import {useContext, useEffect, useState} from 'react';
 import axios from 'axios';
-import { TokenContext } from '../callback';
+import { TokenContext } from '../../pages/callback';
 import { Flex, Spacer } from '@chakra-ui/react';
 import { Avatar } from '@chakra-ui/react';
 import { Box } from '@chakra-ui/react';

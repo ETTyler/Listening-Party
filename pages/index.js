@@ -7,7 +7,7 @@ import { Text } from '@chakra-ui/react'
 import { Center } from '@chakra-ui/react'
 import { Button, ButtonGroup } from '@chakra-ui/react'
 import { Box } from '@chakra-ui/react'
-import Join from './session/join'
+import Join from '../components/session/join'
 
 
 export async function getStaticProps() {

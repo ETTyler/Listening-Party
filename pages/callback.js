@@ -7,7 +7,7 @@ import { Text } from '@chakra-ui/react'
 import { Center } from '@chakra-ui/react'
 import { Button, ButtonGroup } from '@chakra-ui/react'
 import {useEffect, useState, createContext} from 'react';
-import Music from './session/music'
+import Music from '../components/session/music'
 import { CopyIcon } from '@chakra-ui/icons'
 import { useClipboard } from '@chakra-ui/react'
 import { useToast } from '@chakra-ui/react'
