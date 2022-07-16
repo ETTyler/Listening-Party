@@ -78,7 +78,7 @@ export default function Callback() {
     setSessionID("")
     window.localStorage.removeItem("token")
     window.localStorage.removeItem("sessionID")
-}
+  }
 
   return (
     <TokenContext.Provider value={token}>
