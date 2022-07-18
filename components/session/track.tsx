@@ -2,16 +2,17 @@ import {useContext, useEffect, useState} from 'react';
 import axios from 'axios';
 import { TokenContext } from '../../pages/callback';
 import { Flex, Spacer } from '@chakra-ui/react';
-import { Avatar } from '@chakra-ui/react';
 import { Box } from '@chakra-ui/react';
 import { Text } from '@chakra-ui/react';
 import { IconButton } from '@chakra-ui/react'
 import { AddIcon, CheckIcon } from '@chakra-ui/icons';
+import Image from 'next/image';
 
 const Track = ({track}) => {
   const token = useContext(TokenContext)
   const [icon, setIcon] = useState(<AddIcon />)
-  const queue = async (track) => {
+  const image = track.album.images[0].url
+  const queue = async (track: string) => {
     setIcon(<CheckIcon />)
 	  try {
 		  const res = await axios.post("https://api.spotify.com/v1/me/player/queue", null,
@@ -28,10 +29,11 @@ const Track = ({track}) => {
 		  console.log(err);
 	  }
   }
+
   return (
     <>     
       <Flex align='center'>
-        <img width={"10%"} src={track.album.images[0].url} alt=""/> 
+        <Image width={"10%"} src={image} alt="Album cover"/> 
         <Box ml='3'>
           <Text fontWeight='bold'>
             {track.name}
@@ -42,7 +44,6 @@ const Track = ({track}) => {
         <IconButton
           onClick={e => queue(track.uri)}
           variant='outline'
-          //colorScheme='cyan'
           size='sm'
           aria-label='Add to queue'
           fontSize='10px'

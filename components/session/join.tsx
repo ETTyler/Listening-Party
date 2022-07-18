@@ -1,22 +1,12 @@
 import {useContext, useEffect, useState, useRef} from 'react';
-import axios from 'axios';
-import { Flex, Spacer } from '@chakra-ui/react';
-import { Avatar } from '@chakra-ui/react';
-import { Box } from '@chakra-ui/react';
-import { Text } from '@chakra-ui/react';
-import { IconButton } from '@chakra-ui/react'
-import { AddIcon, CheckIcon } from '@chakra-ui/icons';
 import { useDisclosure } from '@chakra-ui/react'
 import { Button } from '@chakra-ui/react';
 import { Input } from '@chakra-ui/react';
 import { FormControl, FormLabel } from '@chakra-ui/react';
 import { useRouter } from 'next/router'
-import { useToast } from '@chakra-ui/react'
 import {
   Alert,
   AlertIcon,
-  AlertTitle,
-  AlertDescription,
 } from '@chakra-ui/react'
 import {
   Modal,
@@ -38,17 +28,11 @@ const Join = () => {
   const initialRef = useRef(null)
   const finalRef = useRef(null)
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value)
   }
 
-  // useEffect(() => {
-  //   if(status === 'error') {
-  //     setStatus('')
-  //   }
-  // }, [])
-
-  const getSession = async (value) => {
+  const getSession = async (value: string) => {
     try {
       const res = await fetch("/api/session", {
         method: "POST",
@@ -62,7 +46,7 @@ const Join = () => {
     }
   }
 
-  const joinSession = async (value) => {
+  const joinSession = async (value: string) => {
     const res = await getSession(value)
     if(res.success) {
       window.localStorage.setItem("token", res.session.authCode)

@@ -1,11 +1,6 @@
-import Head from 'next/head'
-import Link from 'next/link'
-import {useEffect, useState, useContext} from 'react';
+import {useState, useContext} from 'react';
 import axios from 'axios';
-import { Container, Stack } from '@chakra-ui/react'
 import { Text } from '@chakra-ui/react'
-import { Center } from '@chakra-ui/react'
-import { Button, ButtonGroup } from '@chakra-ui/react'
 import { Input } from '@chakra-ui/react'
 import RenderTracks from './renderTracks'
 import { TokenContext } from '../../pages/callback';
@@ -15,7 +10,7 @@ export default function Music() {
   const [searchValue, setSearchValue] = useState('')
   const [tracks, setTracks] = useState([])
 
-  const search = async (e) => {
+  const search = async (e: string) => {
     setSearchValue(e)
     if (searchValue.length > 1) {
       try {
@@ -30,7 +25,6 @@ export default function Music() {
         })
         const results = await res.data
         setTracks(results.tracks.items)
-        setHideTracks(false)
       } catch (err) {
         console.error
       }
@@ -48,6 +42,5 @@ export default function Music() {
       <Input placeholder='Enter Track' color='white' size='lg' onChange={e => search(e.target.value)}/>
       {searchValue && <RenderTracks tracks={tracks}/>}
     </div>
-
   )
 }

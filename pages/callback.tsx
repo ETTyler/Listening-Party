@@ -1,17 +1,16 @@
-import Head from 'next/head'
 import Link from 'next/link'
 import { Heading, IconButton, Tooltip } from '@chakra-ui/react'
 import { Container } from '@chakra-ui/react'
 import { Stack } from '@chakra-ui/react'
 import { Text } from '@chakra-ui/react'
-import { Center } from '@chakra-ui/react'
 import { Button, ButtonGroup } from '@chakra-ui/react'
 import {useEffect, useState, createContext} from 'react';
 import Music from '../components/session/music'
 import { CopyIcon } from '@chakra-ui/icons'
 import { useClipboard } from '@chakra-ui/react'
 import { useToast } from '@chakra-ui/react'
-export const TokenContext = createContext()
+import Image from 'next/image'
+export const TokenContext = createContext('')
 
 export default function Callback() {
   const [token, setToken] = useState("")
@@ -85,11 +84,11 @@ export default function Callback() {
     <div>
       <Container mt='8vh'>
         <Stack spacing={5} alignItems='center' justifyContent='center'>
-          <Heading as='h1' size='xl' align='center'>CURRENTLY PLAYING</Heading>
+          <Heading as='h1' size='xl' alignContent='center'>CURRENTLY PLAYING</Heading>
           <Text fontSize='lg' color='white' align='center'>
             {song} by {artist}
           </Text>
-          <img src={image}/>
+          <Image src={image} alt="Album cover"/>
           <Text fontSize='lg' color='white' align='center'>
             Session ID: {sessionID}
             <Tooltip label="Copy Session ID">
