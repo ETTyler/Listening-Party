@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import {useContext, useEffect, useState} from 'react';
 import axios from 'axios';
 import { TokenContext } from '../../pages/callback';
@@ -33,7 +34,7 @@ const Track = ({track}) => {
   return (
     <>     
       <Flex align='center'>
-        <Image width={"10%"} src={image} alt="Album cover"/> 
+        <img width={"10%"} src={image} alt="Album cover"/> 
         <Box ml='3'>
           <Text fontWeight='bold'>
             {track.name}

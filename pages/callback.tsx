@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Link from 'next/link'
 import { Heading, IconButton, Tooltip } from '@chakra-ui/react'
 import { Container } from '@chakra-ui/react'
@@ -88,7 +89,7 @@ export default function Callback() {
           <Text fontSize='lg' color='white' align='center'>
             {song} by {artist}
           </Text>
-          <Image src={image} alt="Album cover"/>
+          <img src={image} alt="Album cover"/>
           <Text fontSize='lg' color='white' align='center'>
             Session ID: {sessionID}
             <Tooltip label="Copy Session ID">
