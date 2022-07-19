@@ -1,9 +1,8 @@
-import { Heading } from '@chakra-ui/react'
+import { Flex, Heading } from '@chakra-ui/react'
 import { Container } from '@chakra-ui/react'
 import { Stack } from '@chakra-ui/react'
 import { Text } from '@chakra-ui/react'
 import { Button, ButtonGroup } from '@chakra-ui/react'
-import { Box } from '@chakra-ui/react'
 import Join from '../components/session/join'
 
 
@@ -22,11 +21,9 @@ export default function Home(props: { client_id: string }) {
   
   return (
     <Container mt='15vh'>
-      <Stack spacing={5} align='center' justify='center'>
-        <Box display='flex' alignItems="center" flexDir="column" w="100vw">
-        <Heading as='h3' size='3xl' mb='1vw'>LISTENING PARTY</Heading>
-        <Text fontSize='xl'color='white'>Create a session and listen to music together with your friends</Text>
-        </Box>
+      <Stack spacing={5} alignItems='center' justifyContent='center'>
+        <Heading as='h1' size='2xl'>LISTENING PARTY</Heading>
+        <Text fontSize='xl'color='white' align='center'>Create a session by connecting your Spotify and listen to music together with your friends</Text>
         <Join />
         <Button colorScheme='blue' size='lg'>
           <a href={`${auth_endpoint}?client_id=${props.client_id}&redirect_uri=${REDIRECT_URI}&response_type=${response_type}`}>Create Session</a>
