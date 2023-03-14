@@ -3,8 +3,7 @@ import { Container } from '@chakra-ui/react'
 import { Stack } from '@chakra-ui/react'
 import { Text } from '@chakra-ui/react'
 import { Button, ButtonGroup } from '@chakra-ui/react'
-import Join from '../components/session/join'
-import { useRouter } from 'next/router'
+import Join from '../components/join'
 
 
 export async function getStaticProps() {

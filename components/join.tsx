@@ -89,7 +89,7 @@ const Join = () => {
         />
         <ModalContent>
           <ModalHeader color="black">Enter Session ID</ModalHeader>
-          <ModalCloseButton />
+          <ModalCloseButton color={'blue.500'} />
           <ModalBody pb={2}>
             <FormControl>
               <Input ref={initialRef} value={value} onChange={handleChange} color="black" />
