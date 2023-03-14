@@ -16,7 +16,7 @@ export async function getStaticProps() {
 
 export default function Home(props: { client_id: string }) {
   const dev_url = 'http://localhost:3000'
-  const prod_url = 'https://shared-queue-ettyler.vercel.app/'
+  const prod_url = 'https://shared-queue-ettyler.vercel.app'
   const auth_endpoint = 'https://accounts.spotify.com/authorize'
   const response_type = 'token'
   const REDIRECT_URI = `${prod_url}/callback&scope=user-read-currently-playing+user-modify-playback-state+user-read-playback-state`
