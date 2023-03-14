@@ -3,10 +3,10 @@
 
 
 <!-- ABOUT THE PROJECT -->
-## Listening Party
+## Shared Queue
 
 Connect your Spotify and create a collaborative listening session where you and your friends can add songs to the queue remotely. 
-https://listening-party-ettyler.vercel.app/
+https://shared-queue-ettyler.vercel.app/
 
 ### Built With
 
