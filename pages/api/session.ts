@@ -10,7 +10,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
   })
   if (session) {
-    res.send({session, message: "Invalid Session ID", success: true})
+    res.send({session, message: "Valid Session ID", success: true})
   }
   else {
     res.status(404).send({ message: "Invalid Session ID", success: false})

@@ -80,31 +80,48 @@ export default function Callback() {
     window.localStorage.removeItem("sessionID")
   }
 
+  const currentlyPlaying = () => {
+    if (song && artist) {
+      return (
+        <>
+          <Text fontSize='lg' color='white' align='center'>
+            {song} by {artist}
+          </Text>
+          <img src={image} alt="Album cover"/>
+        </>
+    )
+    } else {
+      return
+    }
+  }
+  
+
   return (
     <TokenContext.Provider value={token}>
     <div>
       <Container mt='8vh'>
         <Stack spacing={5} alignItems='center' justifyContent='center'>
           <Heading as='h1' size='xl' alignContent='center'>CURRENTLY PLAYING</Heading>
-          <Text fontSize='lg' color='white' align='center'>
-            {song} by {artist}
-          </Text>
-          <img src={image} alt="Album cover"/>
+          {currentlyPlaying()}
           <Text fontSize='lg' color='white' align='center'>
             Session ID: {sessionID}
-            <Tooltip label="Copy Session ID">
-              <IconButton onClick={() => {
-                onCopy()
-                toast({
-                  title: 'Session ID Copied',
-                  status: 'success',
-                  duration: 2000,
-                  isClosable: true,
-                })
-              }
-            } 
-            ml={2} aria-label='copy' size="sm" variant='outline' colorScheme="" icon={<CopyIcon />}/>
-            </Tooltip>
+          <Tooltip label="Copy Session ID">
+            <IconButton onClick={() => {
+              onCopy()
+              toast({
+                title: 'Session ID Copied',
+                status: 'success',
+                duration: 2000,
+                isClosable: true,
+              })
+              }} 
+              ml={2} 
+              aria-label='copy' 
+              size="sm" 
+              variant='outline' 
+              colorScheme="" 
+              icon={<CopyIcon />}/>
+          </Tooltip>
           </Text>
           <Link href='/'>
             <Button colorScheme='blue' onClick={e=>logout()}>Leave Session</Button>

@@ -2,15 +2,16 @@
 import {useContext, useEffect, useState} from 'react';
 import axios from 'axios';
 import { TokenContext } from '../../pages/callback';
-import { Flex, Spacer } from '@chakra-ui/react';
+import { Flex, Spacer, Tooltip } from '@chakra-ui/react';
 import { Box } from '@chakra-ui/react';
 import { Text } from '@chakra-ui/react';
 import { IconButton } from '@chakra-ui/react'
 import { AddIcon, CheckIcon } from '@chakra-ui/icons';
-import Image from 'next/image';
+import { useToast } from '@chakra-ui/react'
 
 const Track = ({track}) => {
   const token = useContext(TokenContext)
+  const toast = useToast()
   const [icon, setIcon] = useState(<AddIcon />)
   const image = track.album.images[0].url
   const queue = async (track: string) => {
@@ -42,14 +43,25 @@ const Track = ({track}) => {
           <Text fontSize='sm' color='whiteAlpha.900'>{track.album.artists[0].name}</Text>
         </Box>
         <Spacer />
-        <IconButton
-          onClick={e => queue(track.uri)}
-          variant='outline'
-          size='sm'
-          aria-label='Add to queue'
-          fontSize='10px'
-          icon={icon}
-        />
+        <Tooltip label="Add to Queue">
+            <IconButton 
+              onClick={() => {
+                queue(track.uri)
+                toast({
+                  title: 'Added to Queue',
+                  status: 'success',
+                  duration: 2000,
+                  isClosable: true,
+                })
+              }}
+              variant='outline'
+              size='sm'
+              aria-label='Add to queue'
+              fontSize='10px'
+              icon={icon}
+              _hover={{ bg: "teal.700" }} 
+            />
+        </Tooltip>
       </Flex>
     </>
   )
