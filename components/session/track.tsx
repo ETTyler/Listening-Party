@@ -43,7 +43,8 @@ const Track = ({track}) => {
           <Text fontSize='sm' color='whiteAlpha.900'>{track.album.artists[0].name}</Text>
         </Box>
         <Spacer />
-        <Tooltip hasArrow closeDelay={500} label="Add to Queue">
+        <>
+        <Tooltip label="Add to Queue">
             <IconButton 
               onClick={() => {
                 queue(track.uri)
@@ -62,6 +63,7 @@ const Track = ({track}) => {
               _hover={{ bg: "teal.700" }} 
             />
         </Tooltip>
+        </>
       </Flex>
     </>
   )

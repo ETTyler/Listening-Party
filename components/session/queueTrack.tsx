@@ -55,6 +55,7 @@ const QueueTrack = ({track}) => {
           <Text fontSize='sm' color='whiteAlpha.900'>{track.album.artists[0].name}</Text>
         </Box>
         <Spacer />
+        <>
         <Tooltip label="Play Track">
             <IconButton 
               onClick={() => {
@@ -74,6 +75,7 @@ const QueueTrack = ({track}) => {
               _hover={{ bg: "teal.700" }} 
             />
         </Tooltip>
+        </>
         {/* <Tooltip label="Remove From Queue">
             <IconButton 
               onClick={() => {
