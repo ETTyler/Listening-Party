@@ -43,7 +43,7 @@ const Track = ({track}) => {
           <Text fontSize='sm' color='whiteAlpha.900'>{track.album.artists[0].name}</Text>
         </Box>
         <Spacer />
-        <Tooltip label="Add to Queue">
+        <Tooltip hasArrow closeDelay={500} label="Add to Queue">
             <IconButton 
               onClick={() => {
                 queue(track.uri)

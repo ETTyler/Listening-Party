@@ -45,8 +45,6 @@ export default function Music() {
       })
       const results = await res.data
       setQueueTracks(results.queue)
-      console.log(results.queue)
-      console.log(queueTracks)
     } catch (err) {
       console.error
     }
