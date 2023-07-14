@@ -27,22 +27,23 @@ const QueueTrack = ({track}) => {
 	  }
   }
 
-  const removeFromQueue = async (track: string) => {
-	  try {
-		  const res = await axios.post("https://api.spotify.com/v1/me/player/queue", null,
-        {
-          params: {
-            uri: track,
-          },
-          headers: {
-            authorization: `Bearer ${token}`,
-          }
-        }
-      )
-	  } catch (err) {
-		  console.log(err);
-	  }
-  }
+  // if spotify ever add functionality to remove from queue, this is how you would do it
+  // const removeFromQueue = async (track: string) => {
+	//   try {
+	// 	  const res = await axios.post("https://api.spotify.com/v1/me/player/queue", null,
+  //       {
+  //         params: {
+  //           uri: track,
+  //         },
+  //         headers: {
+  //           authorization: `Bearer ${token}`,
+  //         }
+  //       }
+  //     )
+	//   } catch (err) {
+	// 	  console.log(err);
+	//   }
+  // }
 
   return (
     <>     
