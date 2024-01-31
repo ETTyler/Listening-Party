@@ -84,6 +84,18 @@ export default function Callback() {
     setSessionID("")
     window.localStorage.removeItem("token")
     window.localStorage.removeItem("sessionID")
+    const endSession = async () => {
+      try {
+        const res = await fetch("/api/endSession", {
+          method: "POST",
+          body: JSON.stringify({
+            id: sessionID,
+          }),
+        }) 
+      } catch (err) {
+        console.log(err);
+      }
+    }
   }
 
   const SpotifyIcon = () => {
