@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from 'next/link'
-import { Heading, IconButton, Tooltip } from '@chakra-ui/react'
+import { Box, Heading, IconButton, Tooltip } from '@chakra-ui/react'
 import { Container } from '@chakra-ui/react'
 import { Stack } from '@chakra-ui/react'
 import { Text } from '@chakra-ui/react'
@@ -10,7 +10,7 @@ import Music from '../components/session/music'
 import { CopyIcon } from '@chakra-ui/icons'
 import { useClipboard } from '@chakra-ui/react'
 import { useToast } from '@chakra-ui/react'
-import Image from 'next/image'
+import Image from 'next/image' 
 export const TokenContext = createContext('')
 
 export default function Callback() {
@@ -18,6 +18,8 @@ export default function Callback() {
   const [song, setSong] = useState('')
   const [artist, setArtist] = useState('')
   const [image, setImage] = useState('')
+  const [trackURL, setTrackURL] = useState('')
+  const [album, setAlbum] = useState('')
   const [sessionID, setSessionID] = useState('')
   const { onCopy } = useClipboard(sessionID)
   const toast = useToast()
@@ -65,6 +67,10 @@ export default function Callback() {
         setSong(song.item.name)
         setArtist(song.item.artists[0].name)
         setImage(song.item.album.images[1].url)
+        const trackURL = song.item.external_urls
+        setTrackURL(trackURL.spotify)
+        setAlbum(song.item.album.name)
+        console.log(song)
       } catch (err) {
         console.log(err);
       }
@@ -80,14 +86,31 @@ export default function Callback() {
     window.localStorage.removeItem("sessionID")
   }
 
+  const SpotifyIcon = () => {
+    return (
+      <Image src='/Spotify_Icon.png' alt='Spotify Button' width={35} height={35} />
+    )
+  }
+
+
   const currentlyPlaying = () => {
     if (song && artist) {
       return (
         <>
-          <Text fontSize='lg' color='white' align='center'>
-            {song} by {artist}
-          </Text>
+          <Box pb={3} width='300px'>
           <img src={image} alt="Album cover"/>
+          <Text fontWeight='bold' fontSize='lg' pt={2} pl={1}>
+            {song}
+          </Text>
+          <Text fontWeight='semibold' fontSize='md' color='whiteAlpha.900' pl={1}>{artist}</Text>
+          <Text fontWeight='light' fontSize='sm' color='whiteAlpha.900'  pl={1}>{album}</Text>
+          </Box>
+          <a href={trackURL} target="_blank" rel="noopener noreferrer">
+            <Button colorScheme='green' size='lg'  leftIcon={<SpotifyIcon />}>
+              LISTEN ON SPOTIFY
+            </Button>
+          </a>
+          
         </>
     )
     } else {
@@ -104,7 +127,7 @@ export default function Callback() {
           <Heading as='h1' size='xl' alignContent='center'>CURRENTLY PLAYING</Heading>
           {currentlyPlaying()}
           <Text fontSize='lg' color='white' align='center'>
-            Session ID: {sessionID}
+            Session ID: <span style={{color: 'rgba(112, 251, 147, 1)'}}>{sessionID}</span>
           <Tooltip label="Copy Session ID">
             <IconButton onClick={() => {
               onCopy()
@@ -124,7 +147,7 @@ export default function Callback() {
           </Tooltip>
           </Text>
           <Link href='/'>
-            <Button colorScheme='blue' onClick={e=>logout()}>Leave Session</Button>
+            <Button colorScheme='blue' size='md' onClick={e=>logout()}>Leave Session</Button>
           </Link>
         </Stack>
         <Music />
