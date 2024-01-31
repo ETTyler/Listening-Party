@@ -92,6 +92,7 @@ const Track = ({track}) => {
               aria-label='Add to queue'
               fontSize='10px'
               icon={icon}
+              color='yellow.200'
               _hover={{ bg: "teal.700" }} 
             />
         </Tooltip>
